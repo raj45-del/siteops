@@ -1,0 +1,128 @@
+:root {
+    --phantom-bg: rgba(0, 0, 0, 0.01);
+    --phantom-text: rgba(212, 212, 212, 0.6); /* Universal Visibility */
+    --phantom-accent: #4ec9b0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace; /* IDE Standard */
+    background: transparent;
+    cursor: default !important; /* Force default cursor */
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent !important;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: opacity 0.3s ease;
+    opacity: 1.0; 
+    border: none !important; 
+    border-radius: 4px;
+    user-select: none;
+    -webkit-app-region: drag; /* Allow dragging if pinned */
+    cursor: default !important;
+}
+
+#container.active {
+    background: transparent !important; /* No background ever */
+    border: none !important;
+}
+
+#container:hover {
+    opacity: 1.0;
+}
+
+#status-hud {
+    position: fixed;
+    top: 2px;
+    left: 2px; 
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--phantom-text);
+    z-index: 100;
+}
+
+#status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ec9b0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#status-dot.active {
+    opacity: 0.2; /* Very Dim */
+    box-shadow: 0 0 2px #4ec9b0;
+    animation: status-pulse 1.5s infinite;
+}
+
+@keyframes status-pulse {
+    0% { opacity: 0.05; transform: scale(0.9); }
+    50% { opacity: 0.25; transform: scale(1.1); }
+    100% { opacity: 0.05; transform: scale(0.9); }
+}
+
+#answer-area {
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--phantom-text);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+    white-space: pre-wrap;
+    overflow-y: scroll; 
+    max-height: calc(12px * 1.4 * 4); /* Exactly 4 lines */
+    transition: color 0.2s ease;
+    -webkit-app-region: no-drag;
+    pointer-events: auto !important; /* Forces scroll to work */
+}
+
+.q-prefix {
+    color: var(--phantom-text);
+    font-weight: bold;
+    opacity: 0.8;
+    margin-right: 4px;
+}
+
+.stealth-line {
+    font-size: 12px;
+    color: inherit;
+    transition: opacity 0.2s;
+    cursor: default !important;
+}
+
+/* Solving Pulse */
+.solving {
+    opacity: 0.6;
+    animation: pulse 1s infinite;
+    color: #4ec9b0;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.3; }
+}
+
+/* Syntax Highlighting */
+.h-kw { color: #c586c0; font-weight: bold; }
+.h-type { color: #4ec9b0; }
+.h-fn { color: #dcdcaa; }
+.h-str { color: #ce9178; }
+.h-comm { color: #6a9955; opacity: 0.6; font-style: italic; }
+
+/* Totally Hidden Scrollbar */
+#answer-area::-webkit-scrollbar { 
+    display: none;
+}

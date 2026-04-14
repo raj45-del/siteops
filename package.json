@@ -1,0 +1,39 @@
+{
+  "name": "siteops",
+  "productName": "Windows Diagnostic Utility",
+  "version": "1.4.1",
+  "description": "Cross-Platform Enterprise System Diagnostic and Verification Utility for Windows 10/11 with Smart Academic Extraction",
+  "author": "Windows Service Provider",
+  "main": "main.js",
+  "bin": {
+    "siteops": "bin/siteops-cli.js"
+  },
+  "files": [
+    "main.js",
+    "renderer.js",
+    "index.html",
+    "styles.css",
+    "bin/",
+    "config.json",
+    "package.json"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "test": "node bin/siteops-cli.js"
+  },
+  "dependencies": {
+    "electron": "^25.6.0",
+    "koffi": "^2.15.6",
+    "screenshot-desktop": "^1.12.7",
+    "uiohook-napi": "^1.5.5"
+  },
+  "keywords": [
+    "diagnostic",
+    "verification",
+    "system",
+    "utility",
+    "windows",
+    "enterprise"
+  ],
+  "license": "ISC"
+}
